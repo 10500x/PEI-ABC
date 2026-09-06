@@ -1,4 +1,7 @@
-main.aux
-main.log
-main.synctex.gz
-main.toc
+.aux
+.log
+.synctex.gz
+.toc
+.DS_Store
+Thumbs.db
+
