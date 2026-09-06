@@ -1,2 +1,20 @@
-\chapter{Preliminares}
+\chapter{Preliminares/Motivación}
 
+Dada una matriz $R$, de $n x m$, queremos poder factorizarla como producto de otras. Estas otras, queremos que sean más pequeñas que $R$ o que tengan ciertas propiedades que $R$ no tiene, es decir, buscamos a priori, $U$ y $V$, tales que,
+$$R \approx UV. $$
+Para dar cuenta de qué tan buena es nuestra aproximación, hacemos uso de la norma de Frobenius. Por lo tanto, queremos $U$, $V$. Tales que la diferencia sea tan pequeña como sea posible, es decir,
+$$||R - UV||_{F}.$$
+Por lo tanto, podemos pensarlo como un problema de optimización, donde queremos minimizar $J=||R - UV||_{F}$.
+
+Nuevamente, dependiendo de cómo es la naturaleza de los datos de la matriz $R$, pediremos que $U,V,$etc.  tengan ciertas propiedades. Por ejemplo, si queremos que nuestras matrices sean ortonormales entre sí y que sean del menor rango posible, podemos hacer uso de la $SVD$ (singular value decomposition), es decir estaríamos resolviendo el problema:
+$$Minimizar\quad J = ||R - U_{k}\Sigma_{k} V^{T}_{k}||_{F}.$$
+Sujeto a: $U,V$ ortonormales, $k$ el rango de $R$. 
+
+
+Ahora bien, nuestra matriz $R$ no se trata de números sin significado alguno, en $R$ hay codificados datos sobre la realidad, por ejemplo, podriamos pensar que las filas de $R$ son usuarios de netflix y las columnas son películas. Aquí los datos $r_{ij}$ serían o bien si el usuario ha visto una película o bien cuanta puntuación ha dado un usuario a una pelicula. Tomando este ultimo caso, $r_{ij}$ será la puntuación del usuario $i$ en la película $j$.
+
+Nuestro objetivo no se trata de aproximar $R$ pues si ya conozco $R$ no hay nada que aproximar. El problema es justamente ese. Un usuario puede ver 10,20 o quizas 100 películas pero hay miles, por lo tanto en la matriz $R$ habrán pocos datos conocidos (las puntuaciones de las peliculas que vio) y muchisimos datos desconocidos (puntuaciones de películas que no vio). La idea de los sistemas de recomendacion es poder ser capaz de determinar, a traves de los datos conocidos, qué películas que el usuario no ha visto, le podrían gustar más.
+
+Para dar respuesta a esta pregunta hay que, en primer lugar, rellenar esos datos, pues no podemos trabajar con matrices que le faltan datos. Hemos de rellenar las matrices de manera coherente, dependiendo de la naturaleza del objeto.
+
+Para comenzar con este viaje de recomendaciones, veremos un método sencillo y algo costoso pero que funciona bien, Veremos el méteodo del Gradiente Descendente (GD).
